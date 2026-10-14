@@ -1,0 +1,106 @@
+<Window x:Class="Sikai_Project.CreateAccountWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="SIKAI Admin - Create account"
+        Width="480"
+        Height="700"
+        ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterOwner"
+        Background="{StaticResource GbaPageBg}">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Border Margin="24"
+                Padding="26"
+                Background="{StaticResource GbaScreenBg}"
+                BorderBrush="{StaticResource GbaScreenBezel}"
+                BorderThickness="3"
+                CornerRadius="10">
+
+            <StackPanel>
+                <TextBlock Text="1. CREATE NEW ACCOUNT"
+                           FontFamily="{StaticResource PixelFont}"
+                           FontWeight="Bold"
+                           FontSize="16"
+                           Foreground="{StaticResource GbaInk}"
+                           Margin="0,0,0,20"/>
+
+                <TextBlock Text="Role" Style="{StaticResource GbaLabel}"/>
+                <UniformGrid Columns="2" Margin="0,0,0,14">
+                    <RadioButton x:Name="StudentRadio"
+                                 Content="Student"
+                                 GroupName="AccountRole"
+                                 IsChecked="True"
+                                 Margin="0,0,5,0"
+                                 Style="{StaticResource RoleToggleButton}"/>
+                    <RadioButton x:Name="TeacherRadio"
+                                 Content="Teacher"
+                                 GroupName="AccountRole"
+                                 Margin="5,0,0,0"
+                                 Style="{StaticResource RoleToggleButton}"/>
+                </UniformGrid>
+
+                <TextBlock Text="Full name" Style="{StaticResource GbaLabel}"/>
+                <TextBox x:Name="NameBox" Style="{StaticResource GbaTextBox}" Margin="0,0,0,12"/>
+
+                <TextBlock Text="Email" Style="{StaticResource GbaLabel}"/>
+                <TextBox x:Name="EmailBox" Style="{StaticResource GbaTextBox}" Margin="0,0,0,12"/>
+
+                <TextBlock Text="Password" Style="{StaticResource GbaLabel}"/>
+                <Grid Margin="0,0,0,12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="PasswordBox1" Grid.Column="0" Style="{StaticResource GbaTextBox}"/>
+                    <Button Grid.Column="1"
+                            Content="RANDOM"
+                            Width="86"
+                            Margin="8,0,0,0"
+                            Style="{StaticResource GbaButtonOutline}"
+                            Click="GeneratePassword_Click"/>
+                </Grid>
+
+                <TextBlock Text="Security question" Style="{StaticResource GbaLabel}"/>
+                <TextBox x:Name="QuestionBox"
+                         Style="{StaticResource GbaTextBox}"
+                         Margin="0,0,0,12"
+                         Text="What is your favourite colour?"/>
+
+                <TextBlock Text="Security answer" Style="{StaticResource GbaLabel}"/>
+                <TextBox x:Name="AnswerBox" Style="{StaticResource GbaTextBox}" Margin="0,0,0,4"/>
+
+                <TextBlock x:Name="FormError"
+                           Margin="0,14,0,0"
+                           TextWrapping="Wrap"
+                           Style="{StaticResource GbaErrorText}"/>
+                <TextBlock x:Name="FormSuccess"
+                           Margin="0,14,0,0"
+                           TextWrapping="Wrap"
+                           FontFamily="{StaticResource PixelFont}"
+                           FontWeight="Bold"
+                           FontSize="12"
+                           Foreground="{StaticResource GbaAccentGreen}"
+                           Visibility="Collapsed"/>
+
+                <Grid Margin="0,20,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0"
+                            Content="BACK"
+                            Margin="0,0,6,0"
+                            Style="{StaticResource GbaButtonOutline}"
+                            Click="Back_Click"/>
+                    <Button x:Name="CreateButton"
+                            Grid.Column="1"
+                            Content="CREATE"
+                            Margin="6,0,0,0"
+                            Background="{StaticResource GbaAccentGreen}"
+                            Style="{StaticResource GbaButton}"
+                            Click="Create_Click"/>
+                </Grid>
+            </StackPanel>
+        </Border>
+    </ScrollViewer>
+</Window>

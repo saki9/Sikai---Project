@@ -1,0 +1,27 @@
+<Window x:Class="Sikai_Project.TeacherMaterialsWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="Learning Materials - SIKAI" Height="780" Width="1250" WindowStartupLocation="CenterScreen" Background="#FAF9FE">
+  <Window.Resources>
+    <Style x:Key="NavButton" TargetType="Button"><Setter Property="Background" Value="Transparent"/><Setter Property="Foreground" Value="#55516B"/><Setter Property="BorderThickness" Value="0"/><Setter Property="HorizontalContentAlignment" Value="Left"/><Setter Property="Padding" Value="16,11"/><Setter Property="Margin" Value="6,2"/><Setter Property="FontSize" Value="14"/></Style>
+    <Style x:Key="PrimaryButton" TargetType="Button"><Setter Property="Background" Value="#7567D9"/><Setter Property="Foreground" Value="White"/><Setter Property="BorderThickness" Value="0"/><Setter Property="Padding" Value="16,10"/><Setter Property="FontWeight" Value="SemiBold"/></Style>
+  </Window.Resources>
+  <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="220"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+    <Border Background="White"><Grid><Grid.RowDefinitions><RowDefinition Height="80"/><RowDefinition Height="*"/><RowDefinition Height="60"/></Grid.RowDefinitions><TextBlock Text="SIKAI" FontSize="27" FontWeight="Bold" Foreground="#7567D9" VerticalAlignment="Center" HorizontalAlignment="Center"/><StackPanel Grid.Row="1">
+      <Button Content="⌂  Dashboard" Style="{StaticResource NavButton}" Click="Dashboard_Click"/><Button Content="▤  Courses" Style="{StaticResource NavButton}" Click="Courses_Click"/><Button Content="☺  Students" Style="{StaticResource NavButton}" Click="Students_Click"/><Button Content="▣  Learning Materials" Style="{StaticResource NavButton}" Background="#F0EDFF" Foreground="#7567D9"/><Button Content="✓  Assignments" Style="{StaticResource NavButton}" Click="Assignments_Click"/><Button Content="◷  Pending Submissions" Style="{StaticResource NavButton}" Click="Pending_Click"/><Button Content="✉  Messages" Style="{StaticResource NavButton}" Click="Messages_Click"/>
+    </StackPanel><Button Grid.Row="2" Content="↪  Logout" Style="{StaticResource NavButton}" Click="Logout_Click"/></Grid></Border>
+    <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto"><StackPanel Margin="32">
+      <TextBlock Text="Learning Materials" FontSize="30" FontWeight="Bold" Foreground="#29263A"/><TextBlock Text="Share resources with students enrolled in your classes." Margin="0,6,0,22" Foreground="#77738A"/>
+      <Border Background="White" CornerRadius="14" Padding="20" Margin="0,0,0,20"><StackPanel>
+        <TextBlock Text="Add a resource" FontSize="20" FontWeight="SemiBold" Margin="0,0,0,14"/>
+        <TextBlock Text="Class / Subject"/><ComboBox x:Name="SubjectComboBox" DisplayMemberPath="Name" Height="36" Margin="0,4,0,10"/>
+        <TextBlock Text="Resource title"/><TextBox x:Name="TitleBox" Height="36" Padding="8" Margin="0,4,0,10"/>
+        <TextBlock Text="Description"/><TextBox x:Name="DescriptionBox" MinHeight="65" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" Padding="8" Margin="0,4,0,10"/>
+        <TextBlock Text="Type"/><ComboBox x:Name="ResourceTypeComboBox" SelectedIndex="0" Height="36" Margin="0,4,0,10"><ComboBoxItem Content="PDF"/><ComboBoxItem Content="Slides"/><ComboBoxItem Content="Video"/><ComboBoxItem Content="Link"/><ComboBoxItem Content="Document"/></ComboBox>
+        <TextBlock Text="Resource URL (Google Drive, website, video, etc.)"/><TextBox x:Name="UrlBox" Height="36" Padding="8" Margin="0,4,0,14"/>
+        <Button Content="Publish Resource" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Left" Click="AddMaterial_Click"/>
+        <TextBlock x:Name="StatusText" TextWrapping="Wrap" Foreground="#B42318" Margin="0,10,0,0"/>
+      </StackPanel></Border>
+      <TextBlock Text="Published resources" FontSize="21" FontWeight="SemiBold" Margin="0,0,0,12"/>
+      <TextBox x:Name="SearchBox" Height="36" Padding="8" Margin="0,0,0,14" ToolTip="Search by title, subject, or description" TextChanged="SearchBox_TextChanged"/>
+      <StackPanel x:Name="MaterialsPanel"/>
+    </StackPanel></ScrollViewer>
+  </Grid>
+</Window>

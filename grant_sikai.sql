@@ -1,0 +1,4 @@
+
+
+
+GRANT CREATE TRIGGER TO sikai;

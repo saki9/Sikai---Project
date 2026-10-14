@@ -1,0 +1,570 @@
+<Window x:Class="Sikai_Project.TeacherDashboardWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="SIKAI - Teacher Dashboard"
+        Width="1250"
+        Height="780"
+        WindowStartupLocation="CenterScreen"
+        Background="#FAF9FE">
+
+	<Window.Resources>
+
+		
+		<Style x:Key="NavButton" TargetType="Button">
+			<Setter Property="Height" Value="46"/>
+			<Setter Property="Margin" Value="10,3"/>
+			<Setter Property="Padding" Value="16,0"/>
+			<Setter Property="HorizontalContentAlignment" Value="Left"/>
+			<Setter Property="Background" Value="Transparent"/>
+			<Setter Property="Foreground" Value="#57536F"/>
+			<Setter Property="BorderThickness" Value="0"/>
+			<Setter Property="FontSize" Value="14"/>
+			<Setter Property="Cursor" Value="Hand"/>
+		</Style>
+
+		
+		<Style x:Key="Card" TargetType="Border">
+			<Setter Property="Background" Value="White"/>
+			<Setter Property="CornerRadius" Value="16"/>
+			<Setter Property="Padding" Value="18"/>
+			<Setter Property="Margin" Value="5"/>
+		</Style>
+
+		
+		<Style x:Key="PrimaryButton" TargetType="Button">
+			<Setter Property="Background" Value="#A98BD4"/>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="BorderThickness" Value="0"/>
+			<Setter Property="Padding" Value="16,10"/>
+			<Setter Property="Margin" Value="5"/>
+			<Setter Property="Cursor" Value="Hand"/>
+			<Setter Property="FontWeight" Value="SemiBold"/>
+		</Style>
+
+		
+		<Style x:Key="SmallButton" TargetType="Button">
+			<Setter Property="Background" Value="#EEE8FA"/>
+			<Setter Property="Foreground" Value="#65518A"/>
+			<Setter Property="BorderThickness" Value="0"/>
+			<Setter Property="Padding" Value="12,7"/>
+			<Setter Property="Cursor" Value="Hand"/>
+			<Setter Property="FontSize" Value="12"/>
+		</Style>
+
+	</Window.Resources>
+
+
+	<Grid>
+
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="220"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+
+
+		
+
+		<Border Grid.Column="0"
+                Background="White"
+                CornerRadius="0,22,22,0">
+
+			<Grid>
+
+				<Grid.RowDefinitions>
+					<RowDefinition Height="90"/>
+					<RowDefinition Height="*"/>
+					<RowDefinition Height="70"/>
+				</Grid.RowDefinitions>
+
+
+				
+
+				<TextBlock Text="SIKAI "
+                           FontSize="28"
+                           FontWeight="Bold"
+                           Foreground="#302B4F"
+                           VerticalAlignment="Center"
+                           Margin="25,0"/>
+
+
+				
+
+				<StackPanel Grid.Row="1">
+
+					<Button Style="{StaticResource NavButton}"
+                            Content="⌂   Dashboard"/>
+
+					<Button Style="{StaticResource NavButton}"
+                            Content="▤   Courses"
+                            Click="Courses_Click"/>
+
+					<Button Style="{StaticResource NavButton}"
+                            Content="☺   Students"
+                            Click="Students_Click"/>
+
+					<Button Style="{StaticResource NavButton}"
+                            Content="▣   Learning Materials"
+                            Click="Materials_Click"/>
+
+					<Button Style="{StaticResource NavButton}"
+                            Content="✓   Assignments"
+                            Click="Assignments_Click"/>
+
+					<Button Style="{StaticResource NavButton}"
+                            Content="◷   Pending Submissions"
+                            Click="Pending_Click"/>
+
+					<Button Style="{StaticResource NavButton}"
+                            Content="✉   Messages"
+                            Click="Messages_Click"/>
+
+				</StackPanel>
+
+
+				
+
+				<Button Grid.Row="2"
+                        Style="{StaticResource NavButton}"
+                        Content="↪   Logout"
+                            Click="Logout_Click"/>
+
+			</Grid>
+
+		</Border>
+
+
+		
+
+		<ScrollViewer Grid.Column="1"
+                      VerticalScrollBarVisibility="Auto">
+
+			<StackPanel Margin="35">
+
+
+				
+
+				<TextBlock Text="Teacher Portal"
+                           FontSize="14"
+                           Foreground="#85809B"/>
+
+				<StackPanel Orientation="Horizontal">
+
+					<TextBlock x:Name="NameText"
+                               Text="Welcome"
+                               FontSize="34"
+                               FontWeight="Bold"
+                               Foreground="#292443"/>
+
+					<TextBlock Text=" ♡"
+                               FontSize="34"
+                               Foreground="#A98BD4"/>
+
+				</StackPanel>
+
+				<TextBlock Text="Here's what's happening with your courses and students today."
+                           Foreground="#85809B"
+                           Margin="0,5,0,25"/>
+
+
+				
+
+				<UniformGrid Columns="4"
+                             Margin="0,0,0,18">
+
+
+					
+
+					<Border Style="{StaticResource Card}">
+
+						<StackPanel>
+
+							<TextBlock Text="TOTAL COURSES"
+                                       Foreground="#85809B"
+                                       FontSize="12"/>
+
+							<TextBlock x:Name="CoursesText"
+                                       Text="0"
+                                       FontSize="30"
+                                       FontWeight="Bold"
+                                       Foreground="#292443"
+                                       Margin="0,5"/>
+
+							<TextBlock Text="Created by you"
+                                       Foreground="#85809B"/>
+
+						</StackPanel>
+
+					</Border>
+
+
+					
+
+					<Border Style="{StaticResource Card}">
+
+						<StackPanel>
+
+							<TextBlock Text="TOTAL ASSIGNMENTS"
+                                       Foreground="#85809B"
+                                       FontSize="12"/>
+
+							<TextBlock x:Name="AssignmentsText"
+                                       Text="0"
+                                       FontSize="30"
+                                       FontWeight="Bold"
+                                       Foreground="#292443"
+                                       Margin="0,5"/>
+
+							<TextBlock Text="Published work"
+                                       Foreground="#85809B"/>
+
+						</StackPanel>
+
+					</Border>
+
+
+					
+
+					<Border Style="{StaticResource Card}">
+
+						<StackPanel>
+
+							<TextBlock Text="PENDING SUBMISSIONS"
+                                       Foreground="#85809B"
+                                       FontSize="12"/>
+
+							<TextBlock x:Name="ReviewText"
+                                       Text="0"
+                                       FontSize="30"
+                                       FontWeight="Bold"
+                                       Foreground="#292443"
+                                       Margin="0,5"/>
+
+							<TextBlock Text="Need evaluation"
+                                       Foreground="#85809B"/>
+
+						</StackPanel>
+
+					</Border>
+
+
+					
+
+					<Border Style="{StaticResource Card}">
+
+						<StackPanel>
+
+							<TextBlock Text="TOTAL STUDENTS"
+                                       Foreground="#85809B"
+                                       FontSize="12"/>
+
+							<TextBlock x:Name="StudentsText"
+                                       Text="0"
+                                       FontSize="30"
+                                       FontWeight="Bold"
+                                       Foreground="#292443"
+                                       Margin="0,5"/>
+
+							<TextBlock Text="Students"
+                                       Foreground="#85809B"/>
+
+						</StackPanel>
+
+					</Border>
+
+				</UniformGrid>
+
+
+				
+
+				<Grid>
+
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="*"/>
+					</Grid.ColumnDefinitions>
+
+
+					
+
+					<Border Style="{StaticResource Card}"
+                            Margin="5,0,8,10">
+
+						<StackPanel>
+
+							<Grid>
+
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition/>
+									<ColumnDefinition Width="Auto"/>
+								</Grid.ColumnDefinitions>
+
+								<TextBlock Text="My Courses"
+                                           FontSize="20"
+                                           FontWeight="Bold"/>
+
+								<TextBlock Grid.Column="1"
+                                           Text="View all →"
+                                           Foreground="#8B70B8"
+                                           VerticalAlignment="Center"/>
+
+							</Grid>
+
+
+							<StackPanel x:Name="DashboardCoursesList" Margin="0,15,0,0"/>
+
+						</StackPanel>
+
+					</Border>
+
+
+					
+
+					<Border Grid.Column="1"
+                            Style="{StaticResource Card}"
+                            Margin="8,0,5,10">
+
+						<StackPanel>
+
+							<TextBlock Text="Recent Activity"
+                                       FontSize="20"
+                                       FontWeight="Bold"
+                                       Margin="0,0,0,12"/>
+
+
+							<TextBlock Text="📄  New submission for Database Management Systems"
+                                       Foreground="#65518A"
+                                       Margin="0,8"/>
+
+							<TextBlock Text="✓   Assignment evaluated - Web Development"
+                                       Foreground="#65518A"
+                                       Margin="0,8"/>
+
+							<TextBlock Text="💬  New message from Riya Sharma"
+                                       Foreground="#65518A"
+                                       Margin="0,8"/>
+
+							<TextBlock Text="🔗  Course 'Web Development' updated"
+                                       Foreground="#65518A"
+                                       Margin="0,8"/>
+
+						</StackPanel>
+
+					</Border>
+
+				</Grid>
+
+
+				
+
+				<TextBlock Text="Teacher Tools"
+                           FontSize="21"
+                           FontWeight="Bold"
+                           Margin="5,12,0,8"/>
+
+
+				<UniformGrid Columns="4"
+                             Margin="0,0,0,15">
+
+
+					<Button Style="{StaticResource PrimaryButton}"
+                            Content="☺  Manage Students"
+                            Click="ManageStudents_Click"/>
+
+					<Button Style="{StaticResource PrimaryButton}"
+                            Content="＋  Add Material"
+                            Click="AddMaterial_Click"/>
+
+					<Button Style="{StaticResource PrimaryButton}"
+                            Content="＋  Create Assignment"
+                            Click="CreateAssignment_Click"/>
+
+					<Button Style="{StaticResource PrimaryButton}"
+                            Content="✉  Message Student"
+                            Click="MessageStudent_Click"/>
+
+				</UniformGrid>
+
+
+				
+
+				<Border Style="{StaticResource Card}"
+                        Margin="5,5,5,20">
+
+					<StackPanel>
+
+						<Grid>
+
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition/>
+								<ColumnDefinition Width="Auto"/>
+							</Grid.ColumnDefinitions>
+
+							<TextBlock Text="Pending Submissions"
+                                       FontSize="20"
+                                       FontWeight="Bold"/>
+
+							<TextBlock Grid.Column="1"
+                                       Text="View all →"
+                                       Foreground="#8B70B8"/>
+
+						</Grid>
+
+
+						<Grid Margin="0,15,0,5">
+
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="1.2*"/>
+								<ColumnDefinition Width="1.5*"/>
+								<ColumnDefinition Width="1.3*"/>
+								<ColumnDefinition Width="Auto"/>
+								<ColumnDefinition Width="Auto"/>
+							</Grid.ColumnDefinitions>
+
+							<TextBlock Text="Student"
+                                       Foreground="#85809B"/>
+
+							<TextBlock Grid.Column="1"
+                                       Text="Course"
+                                       Foreground="#85809B"/>
+
+							<TextBlock Grid.Column="2"
+                                       Text="Assignment"
+                                       Foreground="#85809B"/>
+
+							<TextBlock Grid.Column="3"
+                                       Text="Status"
+                                       Foreground="#85809B"
+                                       Margin="15,0"/>
+
+							<TextBlock Grid.Column="4"
+                                       Text="Action"
+                                       Foreground="#85809B"/>
+
+						</Grid>
+
+
+						<Separator Margin="0,0,0,8"/>
+
+
+						<Grid Margin="0,7">
+
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="1.2*"/>
+								<ColumnDefinition Width="1.5*"/>
+								<ColumnDefinition Width="1.3*"/>
+								<ColumnDefinition Width="Auto"/>
+								<ColumnDefinition Width="Auto"/>
+							</Grid.ColumnDefinitions>
+
+							<TextBlock Text="Riya Sharma"/>
+
+							<TextBlock Grid.Column="1"
+                                       Text="DBMS"/>
+
+							<TextBlock Grid.Column="2"
+                                       Text="DBMS Assignment 1"/>
+
+							<Border Grid.Column="3"
+                                    Background="#FFF0D5"
+                                    CornerRadius="8"
+                                    Padding="8,4"
+                                    Margin="15,0">
+
+								<TextBlock Text="Pending"
+                                           Foreground="#C58A22"
+                                           FontSize="11"/>
+
+							</Border>
+
+							<Button Grid.Column="4"
+                                    Style="{StaticResource SmallButton}"
+                                    Content="Evaluate"/>
+
+						</Grid>
+
+
+						<Grid Margin="0,7">
+
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="1.2*"/>
+								<ColumnDefinition Width="1.5*"/>
+								<ColumnDefinition Width="1.3*"/>
+								<ColumnDefinition Width="Auto"/>
+								<ColumnDefinition Width="Auto"/>
+							</Grid.ColumnDefinitions>
+
+							<TextBlock Text="Aarav Shrestha"/>
+
+							<TextBlock Grid.Column="1"
+                                       Text="Web Development"/>
+
+							<TextBlock Grid.Column="2"
+                                       Text="Web Assignment"/>
+
+							<Border Grid.Column="3"
+                                    Background="#FFF0D5"
+                                    CornerRadius="8"
+                                    Padding="8,4"
+                                    Margin="15,0">
+
+								<TextBlock Text="Pending"
+                                           Foreground="#C58A22"
+                                           FontSize="11"/>
+
+							</Border>
+
+							<Button Grid.Column="4"
+                                    Style="{StaticResource SmallButton}"
+                                    Content="Evaluate"/>
+
+						</Grid>
+
+
+						<Grid Margin="0,7">
+
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="1.2*"/>
+								<ColumnDefinition Width="1.5*"/>
+								<ColumnDefinition Width="1.3*"/>
+								<ColumnDefinition Width="Auto"/>
+								<ColumnDefinition Width="Auto"/>
+							</Grid.ColumnDefinitions>
+
+							<TextBlock Text="Sujan KC"/>
+
+							<TextBlock Grid.Column="1"
+                                       Text="Computer Networks"/>
+
+							<TextBlock Grid.Column="2"
+                                       Text="Network Quiz"/>
+
+							<Border Grid.Column="3"
+                                    Background="#FFF0D5"
+                                    CornerRadius="8"
+                                    Padding="8,4"
+                                    Margin="15,0">
+
+								<TextBlock Text="Pending"
+                                           Foreground="#C58A22"
+                                           FontSize="11"/>
+
+							</Border>
+
+							<Button Grid.Column="4"
+                                    Style="{StaticResource SmallButton}"
+                                    Content="Evaluate"/>
+
+						</Grid>
+
+					</StackPanel>
+
+				</Border>
+
+
+			</StackPanel>
+
+		</ScrollViewer>
+
+	</Grid>
+
+</Window>

@@ -1,0 +1,71 @@
+<Window x:Class="Sikai_Project.ProfileWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="SIKAI - Profile" Width="1200" Height="760" WindowStartupLocation="CenterScreen" Background="#FAF9FE">
+
+<Window.Resources>
+  <Style x:Key="NavButton" TargetType="Button">
+    <Setter Property="Height" Value="46"/>
+    <Setter Property="Margin" Value="10,3"/>
+    <Setter Property="Padding" Value="16,0"/>
+    <Setter Property="HorizontalContentAlignment" Value="Left"/>
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="Foreground" Value="#57536F"/>
+    <Setter Property="BorderThickness" Value="0"/>
+    <Setter Property="FontSize" Value="14"/>
+    <Setter Property="Cursor" Value="Hand"/>
+  </Style>
+  <Style x:Key="Card" TargetType="Border">
+    <Setter Property="Background" Value="White"/>
+    <Setter Property="CornerRadius" Value="16"/>
+    <Setter Property="Padding" Value="18"/>
+    <Setter Property="Margin" Value="0,0,0,12"/>
+  </Style>
+  <Style x:Key="PrimaryButton" TargetType="Button">
+    <Setter Property="Background" Value="#A98BD4"/>
+    <Setter Property="Foreground" Value="White"/>
+    <Setter Property="BorderThickness" Value="0"/>
+    <Setter Property="Padding" Value="18,10"/>
+    <Setter Property="Cursor" Value="Hand"/>
+  </Style>
+  <Style x:Key="Input" TargetType="TextBox">
+    <Setter Property="Height" Value="40"/>
+    <Setter Property="Padding" Value="10"/>
+    <Setter Property="Background" Value="#F3F0F8"/>
+    <Setter Property="BorderThickness" Value="0"/>
+  </Style>
+</Window.Resources>
+
+<Grid><Grid.ColumnDefinitions><ColumnDefinition Width="220"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+
+<Border Grid.Column="0" Background="White" CornerRadius="0,22,22,0">
+ <Grid>
+  <Grid.RowDefinitions><RowDefinition Height="90"/><RowDefinition Height="*"/><RowDefinition Height="70"/></Grid.RowDefinitions>
+  <TextBlock Text="SIKAI ♡" FontSize="28" FontWeight="Bold" Foreground="#302B4F" VerticalAlignment="Center" Margin="25,0"/>
+  <StackPanel Grid.Row="1">
+   <Button Style="{StaticResource NavButton}" Content="⌂   Dashboard"/>
+   <Button Style="{StaticResource NavButton}" Content="▤   My Notes"/>
+   <Button Style="{StaticResource NavButton}" Content="▣   Study Planner"/>
+   <Button Style="{StaticResource NavButton}" Content="✓   Tasks"/>
+   <Button Style="{StaticResource NavButton}" Content="▢   Subjects"/>
+   <Button Style="{StaticResource NavButton}" Content="▱   Resources"/>
+   <Button Style="{StaticResource NavButton}" Content="✉   Messages"/>
+   <Button Style="{StaticResource NavButton}" Content="●   Profile"/>
+   <Button Style="{StaticResource NavButton}" Content="⚙   Settings"/>
+  </StackPanel>
+  <Button Grid.Row="2" Style="{StaticResource NavButton}" Content="↪   Logout"/>
+ </Grid>
+</Border>
+
+<ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto"><StackPanel Margin="35"><TextBlock Text="My Profile" FontSize="34" FontWeight="Bold" Foreground="#292443"/>
+<TextBlock Text="Account information and activity from Oracle." Foreground="#85809B" Margin="0,5,0,22"/>
+<Border Style="{StaticResource Card}"><StackPanel>
+<TextBlock x:Name="ProfileNameText" Text="Loading..." FontSize="24" FontWeight="Bold"/>
+<TextBlock x:Name="EmailText" Margin="0,5,0,0"/>
+<TextBlock x:Name="RoleText" Foreground="#85809B" Margin="0,3,0,0"/>
+</StackPanel></Border>
+<TextBlock Text="Your Activity" FontSize="21" FontWeight="Bold" Margin="0,15,0,10"/>
+<UniformGrid Columns="4">
+<Border Style="{StaticResource Card}" Margin="3"><StackPanel><TextBlock Text="NOTES"/><TextBlock x:Name="TotalNotesText" Text="0" FontSize="26" FontWeight="Bold"/></StackPanel></Border>
+<Border Style="{StaticResource Card}" Margin="3"><StackPanel><TextBlock Text="COMPLETED TASKS"/><TextBlock x:Name="CompletedTasksText" Text="0" FontSize="26" FontWeight="Bold"/></StackPanel></Border>
+<Border Style="{StaticResource Card}" Margin="3"><StackPanel><TextBlock Text="SUBJECTS"/><TextBlock x:Name="TotalSubjectsText" Text="0" FontSize="26" FontWeight="Bold"/></StackPanel></Border>
+<Border Style="{StaticResource Card}" Margin="3"><StackPanel><TextBlock Text="STUDY HOURS"/><TextBlock x:Name="StudyHoursText" Text="0" FontSize="26" FontWeight="Bold"/></StackPanel></Border>
+</UniformGrid></StackPanel></ScrollViewer>
+</Grid></Window>

@@ -1,0 +1,106 @@
+<Window x:Class="Sikai_Project.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="SIKAI - Login"
+        Width="480"
+        Height="720"
+        MinHeight="600"
+        ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterScreen"
+        Background="{StaticResource WindowBg}">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Border Margin="40,30"
+                Padding="40,36"
+                Background="{StaticResource CardBg}"
+                CornerRadius="24">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="30" ShadowDepth="0" Opacity="0.15" Color="#51465F"/>
+            </Border.Effect>
+
+            <StackPanel>
+                <TextBlock Text="SIKAI"
+                           HorizontalAlignment="Center"
+                           FontSize="30"
+                           FontWeight="Bold"
+                           Foreground="{StaticResource DarkText}"/>
+                <TextBlock Text="Learn • Connect • Grow"
+                           HorizontalAlignment="Center"
+                           Margin="0,4,0,0"
+                           FontSize="12"
+                           Foreground="{StaticResource MutedText}"/>
+                <TextBlock Text="Welcome Back"
+                           HorizontalAlignment="Center"
+                           Margin="0,28,0,22"
+                           FontSize="20"
+                           FontWeight="SemiBold"
+                           Foreground="{StaticResource DarkText}"/>
+
+                
+                <TextBlock Text="I am a" Style="{StaticResource FieldLabel}"/>
+                <UniformGrid Columns="2" Margin="0,0,0,16">
+                    <RadioButton x:Name="StudentRadio"
+                                 Content="Student"
+                                 GroupName="LoginRole"
+                                 IsChecked="True"
+                                 Margin="0,0,5,0"
+                                 Style="{StaticResource RoleToggleButton}"/>
+                    <RadioButton x:Name="TeacherRadio"
+                                 Content="Teacher"
+                                 GroupName="LoginRole"
+                                 Margin="3,0,3,0"
+                                 Style="{StaticResource RoleToggleButton}"/>
+                </UniformGrid>
+
+                
+                <TextBlock Text="Email" Style="{StaticResource FieldLabel}"/>
+                <TextBox x:Name="EmailBox" Style="{StaticResource ModernTextBox}"/>
+                <TextBlock x:Name="EmailError"
+                           Text="Enter your email address."
+                           Style="{StaticResource ErrorText}"/>
+
+                
+                <TextBlock Text="Password" Margin="2,16,0,6" Style="{StaticResource FieldLabel}"/>
+                <Grid>
+                    <PasswordBox x:Name="PasswordBox1" Style="{StaticResource ModernPasswordBox}"/>
+                    <TextBox x:Name="PasswordTextBox1"
+                             Visibility="Collapsed"
+                             Style="{StaticResource ModernTextBoxNoPlaceholder}"/>
+                    <ToggleButton x:Name="ShowPasswordToggle1"
+                                  Style="{StaticResource EyeToggle}"
+                                  Checked="ShowPassword_Changed"
+                                  Unchecked="ShowPassword_Changed"/>
+                </Grid>
+                <TextBlock x:Name="PasswordError"
+                           Text="Enter your password."
+                           Style="{StaticResource ErrorText}"/>
+
+                <Button Content="Forgot password?"
+                        HorizontalAlignment="Right"
+                        Margin="0,10,0,0"
+                        Style="{StaticResource LinkButton}"
+                        Click="ForgotPassword_Click"/>
+
+                <TextBlock x:Name="FormError"
+                           HorizontalAlignment="Center"
+                           Margin="0,14,0,0"
+                           TextAlignment="Center"
+                           TextWrapping="Wrap"
+                           Style="{StaticResource ErrorText}"/>
+
+                <Button x:Name="LoginButton"
+                        Content="LOGIN"
+                        Margin="0,16,0,0"
+                        IsDefault="True"
+                        Style="{StaticResource PrimaryButton}"
+                        Click="Login_Click"/>
+
+                <TextBlock Text="Need an account? Contact your school administrator."
+                           HorizontalAlignment="Center"
+                           Margin="0,22,0,0"
+                           FontSize="12"
+                           Foreground="{StaticResource MutedText}"/>
+            </StackPanel>
+        </Border>
+    </ScrollViewer>
+</Window>

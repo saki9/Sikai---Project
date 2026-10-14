@@ -1,0 +1,204 @@
+<Window x:Class="Sikai_Project.TeacherStudentsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Students - SIKAI"
+        Height="780"
+        Width="1250"
+        WindowStartupLocation="CenterScreen"
+        Background="#FAF9FE">
+
+	<Window.Resources>
+
+		<Style x:Key="NavButton" TargetType="Button">
+			<Setter Property="Background" Value="Transparent"/>
+			<Setter Property="Foreground" Value="#55516B"/>
+			<Setter Property="BorderThickness" Value="0"/>
+			<Setter Property="HorizontalContentAlignment" Value="Left"/>
+			<Setter Property="Padding" Value="18,12"/>
+			<Setter Property="Margin" Value="8,3"/>
+			<Setter Property="FontSize" Value="14"/>
+			<Setter Property="Cursor" Value="Hand"/>
+		</Style>
+
+		<Style x:Key="PrimaryButton" TargetType="Button">
+			<Setter Property="Background" Value="#7567D9"/>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="BorderThickness" Value="0"/>
+			<Setter Property="Padding" Value="18,10"/>
+			<Setter Property="FontSize" Value="14"/>
+			<Setter Property="FontWeight" Value="SemiBold"/>
+			<Setter Property="Cursor" Value="Hand"/>
+		</Style>
+
+		<Style x:Key="DangerButton" TargetType="Button" BasedOn="{StaticResource PrimaryButton}">
+			<Setter Property="Background" Value="#D96C6C"/>
+		</Style>
+
+		<Style x:Key="Card" TargetType="Border">
+			<Setter Property="Background" Value="White"/>
+			<Setter Property="CornerRadius" Value="14"/>
+			<Setter Property="Padding" Value="20"/>
+		</Style>
+
+	</Window.Resources>
+
+	<Grid>
+
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="220"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+
+		
+		<Border Grid.Column="0" Background="White">
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="90"/>
+					<RowDefinition Height="*"/>
+					<RowDefinition Height="70"/>
+				</Grid.RowDefinitions>
+
+				<TextBlock Text="SIKAI"
+                           FontSize="27"
+                           FontWeight="Bold"
+                           Foreground="#7567D9"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"/>
+
+				<StackPanel Grid.Row="1">
+
+					<Button Content="⌂  Dashboard"
+                            Style="{StaticResource NavButton}"
+                            Click="Dashboard_Click"/>
+
+					<Button Content="▤  Courses"
+                            Style="{StaticResource NavButton}"
+                            Click="Courses_Click"/>
+
+					<Button Content="☺  Students"
+                            Style="{StaticResource NavButton}"
+                            Background="#F0EDFF"
+                            Foreground="#7567D9"/>
+
+					<Button Content="▣  Learning Materials"
+                            Style="{StaticResource NavButton}"
+                            Click="Materials_Click"/>
+
+					<Button Content="✓  Assignments"
+                            Style="{StaticResource NavButton}"
+                            Click="Assignments_Click"/>
+
+					<Button Content="◷  Pending Submissions"
+                            Style="{StaticResource NavButton}"
+                            Click="Pending_Click"/>
+
+					<Button Content="✉  Messages"
+                            Style="{StaticResource NavButton}"
+                            Click="Messages_Click"/>
+
+				</StackPanel>
+
+				<Button Grid.Row="2"
+                        Style="{StaticResource NavButton}"
+                        Content="↪  Logout"
+                        Click="Logout_Click"/>
+			</Grid>
+		</Border>
+
+		
+		<Grid Grid.Column="1" Margin="35,30,35,25">
+
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions>
+
+			<StackPanel Grid.Row="0">
+				<TextBlock Text="Students"
+                           FontSize="30"
+                           FontWeight="Bold"
+                           Foreground="#29263A"/>
+
+				<TextBlock Text="Choose one of your classes, then remove a student who should no longer be in it."
+                           FontSize="14"
+                           Foreground="#77738A"
+                           Margin="0,8,0,0"/>
+			</StackPanel>
+
+			<StackPanel Grid.Row="1" Margin="0,24,0,16">
+				<TextBlock Text="Class"
+                           FontSize="12"
+                           FontWeight="SemiBold"
+                           Foreground="#55516B"
+                           Margin="2,0,0,6"/>
+
+				<ComboBox x:Name="ClassCombo"
+                          Width="460"
+                          Height="40"
+                          FontSize="14"
+                          HorizontalAlignment="Left"
+                          VerticalContentAlignment="Center"
+                          DisplayMemberPath="Display"
+                          SelectionChanged="ClassCombo_SelectionChanged"/>
+			</StackPanel>
+
+			<Border Grid.Row="2" Style="{StaticResource Card}">
+				<Grid>
+					<DataGrid x:Name="StudentsGrid"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True"
+                              CanUserAddRows="False"
+                              CanUserResizeRows="False"
+                              SelectionMode="Single"
+                              HeadersVisibility="Column"
+                              GridLinesVisibility="Horizontal"
+                              HorizontalGridLinesBrush="#EFEBF5"
+                              Background="White"
+                              BorderThickness="0"
+                              RowHeight="40"
+                              FontSize="14"
+                              SelectionChanged="StudentsGrid_SelectionChanged">
+						<DataGrid.Columns>
+							<DataGridTextColumn Header="Name" Binding="{Binding FullName}" Width="*"/>
+							<DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="1.5*"/>
+						</DataGrid.Columns>
+					</DataGrid>
+
+					<TextBlock x:Name="EmptyText"
+                               Visibility="Collapsed"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               TextAlignment="Center"
+                               TextWrapping="Wrap"
+                               FontSize="14"
+                               Foreground="#85809B"/>
+				</Grid>
+			</Border>
+
+			<Grid Grid.Row="3" Margin="0,16,0,0">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="Auto"/>
+				</Grid.ColumnDefinitions>
+
+				<TextBlock x:Name="StatusText"
+                           Grid.Column="0"
+                           VerticalAlignment="Center"
+                           TextWrapping="Wrap"
+                           FontSize="13"/>
+
+				<Button x:Name="RemoveButton"
+                        Grid.Column="1"
+                        Content="Remove from class"
+                        Width="180"
+                        Height="42"
+                        IsEnabled="False"
+                        Style="{StaticResource DangerButton}"
+                        Click="Remove_Click"/>
+			</Grid>
+
+		</Grid>
+	</Grid>
+</Window>
